@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baseball Teams</title>
+</head>
+<body>
+    <h1>Manage League</h1>
+    {% if teams %}
+        <h2>All Teams:</h2>
+        {% for team in teams %}
+            {{team.city}} {{team.team_name}} {{team.mascot}} </br>
+        {% endfor %}
+    {% else %}
+        <h2>No teams added yet!</h2>
+    {% endif %}
+
+    <h2>Create a new team</h2>
+    <form action="/createTeam" method='POST'>
+        {% csrf_token %}
+        <label>City</label> <input type="text" name="city" value="Chicago">
+        <label>Team Name</label> <input type="text" name="teamName" value="Cubs">
+        <label>Mascot</label> <input type="text" name="mascot" value="Baby Bears">
+        <input type="submit" value="Add this team">
+    </form>
+    </br>
+    <a href="/deleteAllTeams">Delete ALL Teams</a> | <a href="/modelsDemo">Go Back</a>
+</body>
+</html>

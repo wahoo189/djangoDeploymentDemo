@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Models Demo</title>
+</head>
+<style>
+    span{display:inline-block}
+</style>
+<body>
+    <h1>This is the models demo</h1>
+
+    <h3>Would you like to:</h3>
+    <span>
+        <h4>Using the literal route names...</h4>
+        <h5>Manage <a href="/teams">Teams</a></h5>
+        <h5>Manage <a href="/players">Players</a></h5>
+    </span>
+    <span>
+        <h4>Using named routes...</h4>
+        <h5>Manage <a href="{% url 'standings' %}">Teams</a></h5>
+        <h5>Manage <a href="{% url 'rosters' %}">Players</a></h5>
+    </span>
+    <span>
+        <h4>Using namespaces...</h4>
+        <h5>Manage <a href="{ % url 'BaseballUniverse:standings' %}">Teams</a></h5>
+        <h5>Manage <a href="{ % url 'BaseballUniverse:rosters' %}">Players</a></h5>
+    </span>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Player</title>
+</head>
+<body>
+    <h1>Edit {{player.name}}</h1>
+    <form action="/updatePlayer" method='POST'>
+        {% csrf_token %}
+        <input type="hidden" value="{{player.id}}" name="player_id">
+        
+        <label>Name</label> <input type="text" name="name" value="{{player.name}}">
+        <label>Position</label> 
+        
+        <select name="position">
+            <option value="Pitcher" {% if player.position == "Pitcher" %} selected {% endif %}>Pitcher</option>
+            <option value="Catcher" {% if player.position == "Catcher" %} selected {% endif %}>Catcher</option>
+            <option value="First Base" {% if player.position == "First Base" %} selected {% endif %}>First Base</option>
+            <option value="Second Base" {% if player.position == "Second Base" %} selected {% endif %}>Second Base</option>
+            <option value="Third Base" {% if player.position == "Third Base" %} selected {% endif %}>Third Base</option>
+            <option value="Short Stop" {% if player.position == "Short Stop" %} selected {% endif %}>Short Stop</option>
+            <option value="Left Field" {% if player.position == "Left Field" %} selected {% endif %}>Left Field</option>
+            <option value="Center Field" {% if player.position == "Center Field" %} selected {% endif %}>Center Field</option>
+            <option value="Right Field" {% if player.position == "Right Field" %} selected {% endif %}>Right Field</option>
+        </select>
+        <label>Salary</label> <input type="text" name="salary" value="{{player.salary}}">
+        
+        <input type="submit" value="Update this player"> 
+    </form>
+
+    <a href="/players">Go Back</a>
+</body>
+</html>

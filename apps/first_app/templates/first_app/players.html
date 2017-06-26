@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baseball Players</title>
+    
+</head>
+<body>
+    <h1>Manage Player Pool</h1>
+    {% if players %}
+        <h2>All Players:</h2>
+        {% for player in players %}
+            {{player.name}}, {{player.position}}, {{player.salary}} 
+            <button onclick="confirm('Are you sure you want to send {{player.name}} to the minors?') ? window.location = '/deletePlayer/{{player.id}}' : null">Send him down to the minors</button> | <a href="/deletePlayer/{{player.id}}">Delete</a> | <a href="/editPlayer/{{player.id}}">Edit</a> </br>
+        {% endfor %}
+    {% else %}
+        <h2>No players added yet!</h2>
+    {% endif %}
+
+    <h2>Create a new player</h2>
+    <!--<form action="/createPlayer" method='POST'>-->
+    <form action="{% url 'makePlayer' %}" method='POST'>
+    <!--<form action="{ % url 'BaseballUniverse:makePlayer' %}" method='POST'>-->
+        {% csrf_token %}
+        <label>Name</label> <input type="text" name="name" value="Kris">
+        <label>Position</label> 
+        <select name="position">
+            <option value="Pitcher">Pitcher</option>
+            <option value="Catcher">Catcher</option>
+            <option value="First Base">First Base</option>
+            <option value="Second Base">Second Base</option>
+            <option value="Third Base">Third Base</option>
+            <option value="Short Stop">Short Stop</option>
+            <option value="Left Field">Left Field</option>
+            <option value="Center Field">Center Field</option>
+            <option value="Right Field">Right Field</option>
+        </select>
+        <label>Salary</label> <input type="text" name="salary" value="1000000">
+        
+        <input type="submit" value="Add this player"> 
+    </form>
+    </br>
+    <a href="/deleteAllPlayers">Delete ALL Players</a> | <a href="/modelsDemo">Go Back</a>
+
+    <script>
+
+    </script>
+</body>
+</html>
